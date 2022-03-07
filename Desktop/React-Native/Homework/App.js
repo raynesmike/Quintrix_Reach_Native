@@ -7,15 +7,37 @@
  */
 
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View, ScrollView } from 'react-native';
+import {
+  Platform,
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  Button,
+  TouchableOpacity,
+} from 'react-native';
 
 type Props = {};
 
 export default class App extends Component<Props> {
   render() {
-    return <BoxesContainer />;
+    return <ButtonContainer />;
   }
 }
+
+const ButtonContainer = () => {
+  <TouchableOpacity>
+    <Button Text='DEFAULT'></Button>
+    <Button>ICON</Button>
+    <Button>LOADING</Button>
+    <Button>DEFAULT</Button>
+    <Button>ICON</Button>
+    <Button>LOADING</Button>
+    <Button>DEFAULT</Button>
+    <Button>ICON</Button>
+    <Button>LOADING</Button>
+  </TouchableOpacity>;
+};
 
 const BoxesContainer = (variation = 'default') => (
   <ScrollView contentContainerStyle={styles.container}>
@@ -92,5 +114,4 @@ const styles = StyleSheet.create({
     paddingTop: 13,
     textAlign: 'center',
     justifyContent: 'center',
-  },
-});
+tAlign: 'center',
