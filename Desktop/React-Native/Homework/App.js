@@ -6,14 +6,14 @@
  * @flow
  */
 
+import Icon from 'react-native-vector-icons/Ionicons';
+import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import React, { Component } from 'react';
 import {
   Platform,
   StyleSheet,
   Text,
   View,
-  ScrollView,
-  Button,
   TouchableOpacity,
 } from 'react-native';
 
@@ -21,97 +21,75 @@ type Props = {};
 
 export default class App extends Component<Props> {
   render() {
-    return <ButtonContainer />;
+    return <ButtonSection />;
   }
 }
 
-const ButtonContainer = () => {
-  <TouchableOpacity>
-    <Button Text='DEFAULT'></Button>
-    <Button>ICON</Button>
-    <Button>LOADING</Button>
-    <Button>DEFAULT</Button>
-    <Button>ICON</Button>
-    <Button>LOADING</Button>
-    <Button>DEFAULT</Button>
-    <Button>ICON</Button>
-    <Button>LOADING</Button>
-  </TouchableOpacity>;
-};
+const ButtonSection = () => (
+  <View style={styles.container}>
+    <ButtonContainer buttonVariation='default'></ButtonContainer>
+    <ButtonContainer
+      buttonVariation='buttonVariation1'
+      color='blue'
+    ></ButtonContainer>
+    <ButtonContainer buttonVariation='buttonVariation2'></ButtonContainer>
+  </View>
+);
 
-const BoxesContainer = (variation = 'default') => (
-  <ScrollView contentContainerStyle={styles.container}>
-    <View style={styles.variation1}></View>
-    <View style={styles.variation2}></View>
-    <View style={styles.variation3}></View>
-    <View style={styles.variation4}></View>
-    <Text style={[styles.default, styles.boxTextStyle]}>
-      Here we go, how it's going. There we go...
-    </Text>
-    <View style={styles.default}></View>
-    <View style={styles.default}></View>
-    <View style={styles.default}></View>
-    <View style={styles.default}></View>
-    <View style={styles.default}></View>
-  </ScrollView>
+const ButtonContainer = ({ buttonVariation = 'default', color }) => (
+  <View style={styles.buttonContainerStyle1}>
+    <TouchableOpacity>
+      <Text style={styles[buttonVariation]}>DEFAULT</Text>
+    </TouchableOpacity>
+    <TouchableOpacity>
+      <Text style={styles[buttonVariation]}>
+        <Icon name='camera' color={color}></Icon> ICON
+      </Text>
+    </TouchableOpacity>
+    <TouchableOpacity>
+      <Text style={styles[buttonVariation]}>
+        <EvilIcons name='spinner-3' size={25} color={color}></EvilIcons> LOADING
+      </Text>
+    </TouchableOpacity>
+  </View>
 );
 
 const styles = StyleSheet.create({
   container: {
+    flexDirection: 'row',
+  },
+  buttonContainerStyle1: {
+    backgroundColor: '#F5F2F2',
+    justifyContent: 'center',
     alignItems: 'center',
+    borderColor: 'red',
+    margin: 5,
+    paddingVertical: 20,
+    paddingHorizontal: '3%',
+    flexDirection: 'column',
   },
   default: {
-    backgroundColor: 'yellow',
-    width: '80%',
-    height: 50,
-    marginVertical: 30,
-    borderWidth: 3,
-    borderColor: 'lightgreen',
-    borderRadius: 0,
+    color: 'blue',
+    padding: 3,
+    marginVertical: 2,
   },
-  variation1: {
-    backgroundColor: 'yellow',
-    width: '80%',
-    height: 50,
-    marginVertical: 30,
-    borderWidth: 3,
-    borderColor: 'lightgreen',
-    borderRadius: 1,
-    borderStyle: 'solid',
+  buttonVariation1: {
+    color: 'blue',
+    borderColor: 'gray',
+    padding: 3,
+    paddingHorizontal: 10,
+    borderWidth: 1,
+    borderRadius: 3,
+    marginVertical: 2,
   },
-  variation2: {
-    backgroundColor: 'yellow',
-    width: '80%',
-    height: 50,
-    marginVertical: 30,
-    borderWidth: 3,
-    borderColor: 'lightgreen',
-    borderRadius: 1,
-    borderStyle: 'dashed',
+  buttonVariation2: {
+    color: 'white',
+    borderColor: 'gray',
+    padding: 3,
+    paddingHorizontal: 10,
+    backgroundColor: '#2A6ED8',
+    borderWidth: 1,
+    borderRadius: 3,
+    marginVertical: 2,
   },
-  variation3: {
-    backgroundColor: 'yellow',
-    width: '80%',
-    height: 50,
-    marginVertical: 30,
-    borderWidth: 10,
-    borderColor: 'red',
-    borderRadius: 0,
-  },
-  variation4: {
-    backgroundColor: 'yellow',
-    width: '80%',
-    height: 50,
-    marginVertical: 30,
-    borderWidth: 4,
-    borderColor: 'turquoise',
-    borderRadius: 1,
-    borderStyle: 'dotted',
-  },
-  boxTextStyle: {
-    flex: 1,
-    fontSize: 17,
-    paddingTop: 13,
-    textAlign: 'center',
-    justifyContent: 'center',
-tAlign: 'center',
+});
