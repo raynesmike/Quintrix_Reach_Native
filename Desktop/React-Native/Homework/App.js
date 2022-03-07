@@ -17,22 +17,32 @@ export default class App extends Component<Props> {
   }
 }
 
-const BoxesContainer = (variation = 'default') => (
+const BoxesContainer = () => (
   <ScrollView contentContainerStyle={styles.container}>
-    <View style={styles.variation1}></View>
-    <View style={styles.variation2}></View>
-    <View style={styles.variation3}></View>
-    <View style={styles.variation4}></View>
-    <Text style={[styles.default, styles.boxTextStyle]}>
+    <ViewBox variation='variation1' />
+    <ViewBox variation='variation2' />
+    <ViewBox variation='variation3' />
+    <ViewBox variation='variation4' />
+    <ViewBox variation='default'>
       Here we go, how it's going. There we go...
-    </Text>
-    <View style={styles.default}></View>
-    <View style={styles.default}></View>
-    <View style={styles.default}></View>
-    <View style={styles.default}></View>
-    <View style={styles.default}></View>
+    </ViewBox>
+    <ViewBox />
+    <ViewBox />
+    <ViewBox />
+    <ViewBox />
   </ScrollView>
 );
+
+const ViewBox = ({ variation, children }) => {
+  if (variation === undefined) {
+    variation = 'default';
+  }
+  return (
+    <View style={styles[variation]}>
+      <Text style={styles.boxTextStyle}> {children} </Text>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -88,7 +98,7 @@ const styles = StyleSheet.create({
   },
   boxTextStyle: {
     flex: 1,
-    fontSize: 17,
+    fontSize: 16,
     paddingTop: 13,
     textAlign: 'center',
     justifyContent: 'center',
