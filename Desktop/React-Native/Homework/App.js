@@ -33,10 +33,10 @@ const BoxesContainer = () => (
   </ScrollView>
 );
 
-const ViewBox = ({ variation, children }) => {
-  if (variation === undefined) {
-    variation = 'default';
-  }
+const ViewBox = ({ variation = 'default', children }) => {
+  // if (variation === undefined) {
+  //   variation = 'default';
+  // }
   return (
     <View style={styles[variation]}>
       <Text style={styles.boxTextStyle}> {children} </Text>
